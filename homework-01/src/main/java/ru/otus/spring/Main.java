@@ -1,10 +1,8 @@
 package ru.otus.spring;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.otus.spring.domain.Person;
 import ru.otus.spring.domain.StudentTest;
 import ru.otus.spring.domain.TestQuestion;
-import ru.otus.spring.service.PersonService;
 import ru.otus.spring.service.StudentTestService;
 
 import java.util.Scanner;

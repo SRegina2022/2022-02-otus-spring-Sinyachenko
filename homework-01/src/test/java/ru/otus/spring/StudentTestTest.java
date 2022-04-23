@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class StudentTestTest {
+class StudentTestTest {
     @DisplayName("Constructor")
     @Test
     void correctConstructor() {
@@ -22,7 +22,7 @@ public class StudentTestTest {
     @DisplayName("Name Setter")
     @Test
     void setTestName() {
-        String  testName = "Hard Test";
+        String testName = "Hard Test";
         StudentTest test = new StudentTest("Simple Test");
         test.setName(testName);
         assertEquals(testName, test.getName());
