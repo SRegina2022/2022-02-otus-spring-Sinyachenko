@@ -1,8 +1,8 @@
 package ru.otus.spring;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import ru.otus.spring.config.ApplicationConfig;
 import ru.otus.spring.domain.StudentTest;
 import ru.otus.spring.domain.TestQuestion;
@@ -10,13 +10,12 @@ import ru.otus.spring.service.StudentTestService;
 
 import java.util.Scanner;
 
-@Configuration
-@ComponentScan
+@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(Main.class);
+        ApplicationContext context =
+                SpringApplication.run(Main.class);
         StudentTestService service = context.getBean(StudentTestService.class);
         StudentTest test = service.getByName("Simple Math test");
         Scanner scanner = new Scanner(System.in);
@@ -45,11 +44,5 @@ public class Main {
         } else {
             System.out.println("Test failed");
         }
-
-
-        // Данная операция, в принципе не нужна.
-        // Мы не работаем пока что с БД, а Spring Boot сделает закрытие за нас
-        // Подробности - через пару занятий
-        context.close();
     }
 }
