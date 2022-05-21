@@ -1,0 +1,6 @@
+config:
+  locale : ru_RU
+  count_to_ok : 3
+  pattern : questions%s.csv
+  testFileName : test-questions.csv
+  answersToPass: 3
