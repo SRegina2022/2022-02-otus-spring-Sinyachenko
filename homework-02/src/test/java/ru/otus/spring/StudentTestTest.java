@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.otus.spring.config.ApplicationConfig;
 import ru.otus.spring.dao.StudentTestDaoSimple;
+import ru.otus.spring.domain.Person;
 import ru.otus.spring.domain.StudentTest;
-import ru.otus.spring.service.StudentTestService;
-import ru.otus.spring.service.StudentTestServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,8 +20,9 @@ class StudentTestTest {
 
         applicationConfig.setTestFileName("test-questions.csv");
 
-        StudentTestService service = new StudentTestServiceImpl(new StudentTestDaoSimple(applicationConfig));
-        StudentTest test = service.getByName("Simple Test");
+        StudentTestDaoSimple dao = new StudentTestDaoSimple(applicationConfig);
+        Person person = new Person("John", "Dow");
+        StudentTest test = dao.getTest("Simple Test", person);
         assertAll("Check Name and questions count",
                 () -> assertEquals("Simple Test", test.getName()),
                 () -> assertEquals(4, test.getQuestions().size()));

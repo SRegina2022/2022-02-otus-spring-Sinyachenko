@@ -1,13 +1,11 @@
 package ru.otus.spring.domain;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import ru.otus.spring.domain.TestQuestion;
 
 public class StudentTest {
     private ArrayList<TestQuestion> questions;
     private String name;
+    private Person student;
 
     public StudentTest(String name) {
         this.name = name;
@@ -27,5 +25,13 @@ public class StudentTest {
 
     public String getName() {
         return name;
+    }
+
+    public Person getStudent() {
+        return student;
+    }
+
+    public void setStudent(Person student) {
+        this.student = student;
     }
 }
