@@ -7,8 +7,8 @@ import ru.otus.spring.domain.StudentTest;
 import ru.otus.spring.domain.TestQuestion;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Vector;
 
 @Component("studentTestDao")
 public class StudentTestDaoSimple implements StudentTestDao {
@@ -21,7 +21,7 @@ public class StudentTestDaoSimple implements StudentTestDao {
     @Override
     public StudentTest getTest(String testName, Person person) {
         StudentTest test = new StudentTest(testName);
-        ArrayList<TestQuestion> questions = new ArrayList<>();
+        Vector<TestQuestion> questions = new Vector<>();
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(applicationConfig.getTestFileName());
         assert inputStream != null;

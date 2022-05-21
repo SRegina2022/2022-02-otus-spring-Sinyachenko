@@ -1,9 +1,9 @@
 package ru.otus.spring.domain;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 public class StudentTest {
-    private ArrayList<TestQuestion> questions;
+    private Vector<TestQuestion> questions;
     private String name;
     private Person student;
 
@@ -11,11 +11,11 @@ public class StudentTest {
         this.name = name;
     }
 
-    public void setQuestions(ArrayList<TestQuestion> questions) {
+    public void setQuestions(Vector<TestQuestion> questions) {
         this.questions = questions;
     }
 
-    public ArrayList<TestQuestion> getQuestions() {
+    public Vector<TestQuestion> getQuestions() {
         return questions;
     }
 
