@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StudentTestTest {
 
     @MockBean
-    @Autowired
     private StringReadService stringReadService;
 
     @Autowired
