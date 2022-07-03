@@ -7,22 +7,16 @@ import java.util.Scanner;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-    private final MessageService messageService;
+    private final StringReadService stringReadService;
 
-    public PersonServiceImpl(MessageService msg) {
-        this.messageService = msg;
+    public PersonServiceImpl(StringReadService msg) {
+        this.stringReadService = msg;
     }
 
     @Override
     public Person getPerson() {
-        Scanner scanner = new Scanner(System.in);
-
-        String firstName, lastName;
-        System.out.println(messageService.getMessage("firstName"));
-        firstName = scanner.nextLine();
-
-        System.out.println(messageService.getMessage("lastName"));
-        lastName = scanner.nextLine();
+        String firstName = stringReadService.read("firstName");
+        String lastName = stringReadService.read("lastName");
 
         return new Person(firstName, lastName);
     }

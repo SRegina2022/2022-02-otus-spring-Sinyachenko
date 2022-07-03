@@ -12,6 +12,6 @@ public class Main {
         ApplicationContext context =
                 SpringApplication.run(Main.class);
         StudentTestService service = context.getBean(StudentTestService.class);
-        service.Run("Simple Math test");
+        service.run("Simple Math test");
     }
 }
