@@ -20,8 +20,8 @@ public class StudentTestServiceImpl implements StudentTestService {
     }
 
     @Override
-    public void Run(String testName) {
-        PersonService personService = new PersonServiceImpl(messageService);
+    public void run(String testName) {
+        PersonService personService = new PersonServiceImpl(new StringReadServiceImpl(messageService));
         Person person = personService.getPerson();
         StudentTest test = dao.getTest(testName, person);
 

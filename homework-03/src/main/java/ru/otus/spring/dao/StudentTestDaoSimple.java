@@ -7,6 +7,7 @@ import ru.otus.spring.domain.StudentTest;
 import ru.otus.spring.domain.TestQuestion;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -21,7 +22,7 @@ public class StudentTestDaoSimple implements StudentTestDao {
     @Override
     public StudentTest getTest(String testName, Person person) {
         StudentTest test = new StudentTest(testName);
-        Vector<TestQuestion> questions = new Vector<>();
+        ArrayList<TestQuestion> questions = new ArrayList<>();
         String filePath = String.format(applicationConfig.getTestFileName(), this.applicationConfig.getLocale().toString().substring(0,2));
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
