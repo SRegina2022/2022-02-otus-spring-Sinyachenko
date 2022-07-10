@@ -3,3 +3,6 @@ config:
   count_to_ok: 3
   testFileName: test-questions_%s.csv
   answersToPass: 3
+spring:
+  main:
+    allow-circular-references: true
