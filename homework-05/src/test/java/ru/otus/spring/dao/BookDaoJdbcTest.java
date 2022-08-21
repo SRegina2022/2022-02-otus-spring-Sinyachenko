@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("Dao для работы с книгами должно")
 @JdbcTest
-@Import(BookDaoJdbc.class)
+@Import({BookDaoJdbc.class, AuthorDaoJdbc.class, GenreDaoJdbc.class})
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class BookDaoJdbcTest {
 
@@ -30,6 +30,13 @@ class BookDaoJdbcTest {
 
     @Autowired
     private BookDaoJdbc bookDao;
+
+    @Autowired
+    private AuthorDaoJdbc authorDao;
+
+    @Autowired
+    private GenreDaoJdbc genreDao;
+
 
     @BeforeTransaction
     void beforeTransaction(){
@@ -53,7 +60,7 @@ class BookDaoJdbcTest {
     @DisplayName("добавлять книгу в БД")
     @Test
     void shouldInsertBook() {
-        Book expectedBook = new Book(EXPECTED_BOOKS_COUNT + 1, "Test",2001, 1,1);
+        Book expectedBook = new Book(EXPECTED_BOOKS_COUNT + 1, "Test",2001, authorDao.getById(1), genreDao.getById(1));
         bookDao.insert(expectedBook);
         Book actualBook = bookDao.getById(expectedBook.getId());
         assertThat(actualBook).usingRecursiveComparison().isEqualTo(expectedBook);
@@ -62,7 +69,9 @@ class BookDaoJdbcTest {
     @DisplayName("возвращать ожидаемую книгу по ее id")
     @Test
     void shouldReturnExpectedBookById() {
-        Book expectedBook = new Book(EXISTING_BOOK_ID, EXISTING_BOOK_NAME,EXISTING_BOOK_YEAR,EXISTING_BOOK_AUTORID,EXISTING_BOOK_GENREID);
+        Book expectedBook = new Book(EXISTING_BOOK_ID, EXISTING_BOOK_NAME,EXISTING_BOOK_YEAR,
+                authorDao.getById(EXISTING_BOOK_AUTORID),
+                genreDao.getById(EXISTING_BOOK_GENREID));
         Book actualBook = bookDao.getById(expectedBook.getId());
         assertThat(actualBook).usingRecursiveComparison().isEqualTo(expectedBook);
     }
@@ -85,9 +94,9 @@ class BookDaoJdbcTest {
         List<Book> actualBookList = bookDao.getAll();
         assertThat(actualBookList)
                 .usingFieldByFieldElementComparator()
-                .containsExactlyInAnyOrder(new Book(1, "Idiot",2000,1,1),
-                        new Book(2, "Onegin",1980,2,1),
-                        new Book(3, "Romeo & Juliette",1990,3,2));
+                .containsExactlyInAnyOrder(new Book(1, "Idiot",2000,authorDao.getById(1),genreDao.getById(1)),
+                        new Book(2, "Onegin",1980,authorDao.getById(2),genreDao.getById(1)),
+                        new Book(3, "Romeo & Juliette",1990,authorDao.getById(3),genreDao.getById(2)));
     }
 
 }

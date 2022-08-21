@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
+import ru.otus.spring.dao.AuthorDao;
+import ru.otus.spring.dao.GenreDao;
+import ru.otus.spring.domain.Author;
 import ru.otus.spring.domain.Book;
+import ru.otus.spring.domain.Genre;
 import ru.otus.spring.service.BookService;
 
 import javax.validation.constraints.Null;
@@ -14,10 +18,14 @@ import java.util.List;
 @ShellComponent
 public class ShellLibraryDb {
     private final BookService bookService;
+    private final AuthorDao authorDao;
+    private final GenreDao genreDao;
 
     @Autowired
-    ShellLibraryDb(BookService bookService) {
+    ShellLibraryDb(BookService bookService, AuthorDao authorDao, GenreDao genreDao) {
         this.bookService = bookService;
+        this.authorDao = authorDao;
+        this.genreDao = genreDao;
     }
 
     @ShellMethod("Get count of books")
@@ -42,7 +50,9 @@ public class ShellLibraryDb {
                         @ShellOption Integer year,
                         @ShellOption Integer authorId,
                         @ShellOption Integer genreId) {
-        Book book = new Book(id, name, year, authorId, genreId);
+        Author author = authorDao.getById(authorId);
+        Genre genre = genreDao.getById(genreId);
+        Book book = new Book(id, name, year, author, genre);
         bookService.insertBook(book);
     }
 
@@ -57,7 +67,9 @@ public class ShellLibraryDb {
                            @ShellOption Integer year,
                            @ShellOption Integer authorId,
                            @ShellOption Integer genreId) {
-        Book book = new Book(id, name, year, authorId, genreId);
+        Author author = authorDao.getById(authorId);
+        Genre genre = genreDao.getById(genreId);
+        Book book = new Book(id, name, year, author, genre);
         bookService.updateBook(book);
     }
 }
