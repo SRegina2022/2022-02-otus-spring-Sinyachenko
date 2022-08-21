@@ -8,6 +8,7 @@ import ru.otus.spring.domain.Book;
 import ru.otus.spring.service.BookService;
 
 import javax.validation.constraints.Null;
+import java.util.List;
 
 
 @ShellComponent
@@ -27,6 +28,11 @@ public class ShellLibraryDb {
     @ShellMethod("Get Book by ID")
     public Book getBook(@ShellOption Integer id) {
         return bookService.getBook(id);
+    }
+
+    @ShellMethod("Get all Books")
+    public List<Book> getBooks() {
+        return bookService.getAllBooks();
     }
 
 
