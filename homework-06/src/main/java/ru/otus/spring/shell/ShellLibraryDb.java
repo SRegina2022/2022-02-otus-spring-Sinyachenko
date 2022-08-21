@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.otus.spring.domain.Book;
+import ru.otus.spring.models.Author;
+import ru.otus.spring.models.Book;
+import ru.otus.spring.models.Genre;
 import ru.otus.spring.service.BookService;
 
-import javax.validation.constraints.Null;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 @ShellComponent
@@ -25,7 +29,7 @@ public class ShellLibraryDb {
     }
 
     @ShellMethod("Get Book by ID")
-    public Book getBook(@ShellOption Integer id) {
+    public Optional<Book> getBook(@ShellOption Integer id) {
         return bookService.getBook(id);
     }
 
@@ -36,7 +40,11 @@ public class ShellLibraryDb {
                         @ShellOption Integer year,
                         @ShellOption Integer authorId,
                         @ShellOption Integer genreId) {
-        Book book = new Book(id, name, year, authorId, genreId);
+        Author author = new Author(0, "dhfd");
+        List<Author> authors = new ArrayList<>();
+        authors.add(author);
+        Genre genre = new Genre(0, "dfhdsdff");
+        Book book = new Book(id, name, year, authors, genre);
         bookService.insertBook(book);
     }
 
@@ -51,7 +59,11 @@ public class ShellLibraryDb {
                            @ShellOption Integer year,
                            @ShellOption Integer authorId,
                            @ShellOption Integer genreId) {
-        Book book = new Book(id, name, year, authorId, genreId);
+        Author author = new Author(0, "dhfd");
+        List<Author> authors = new ArrayList<>();
+        authors.add(author);
+        Genre genre = new Genre(0, "dfhdsdff");
+        Book book = new Book(id, name, year, authors, genre);
         bookService.updateBook(book);
     }
 }

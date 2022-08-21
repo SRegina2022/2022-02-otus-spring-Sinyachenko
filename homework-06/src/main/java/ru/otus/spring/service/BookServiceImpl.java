@@ -2,43 +2,44 @@ package ru.otus.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.otus.spring.dao.BookDao;
-import ru.otus.spring.domain.Book;
+import ru.otus.spring.models.Book;
+import ru.otus.spring.repositories.BookRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
-    private final BookDao dao;
+    private final BookRepository dao;
 
     @Autowired
-    public BookServiceImpl(BookDao dao) {
+    public BookServiceImpl(BookRepository dao) {
         this.dao = dao;
     }
 
     @Override
     public int count() {
-        return dao.count();
+        return dao.findAll().size();
     }
 
     @Override
-    public Book getBook(long id) {
-        return dao.getById(id);
+    public Optional<Book> getBook(long id) {
+        return dao.findById(id);
     }
 
     @Override
     public List<Book> getAllBooks() {
-        return dao.getAll();
+        return dao.findAll();
     }
 
     @Override
     public void insertBook(Book book) {
-        dao.insert(book);
+        dao.save(book);
     }
 
     @Override
     public void updateBook(Book book) {
-        dao.update(book);
+        dao.save(book);
     }
 
     @Override

@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
-import ru.otus.spring.domain.Book;
-import ru.otus.spring.service.BookService;
+import ru.otus.spring.models.Book;
 import ru.otus.spring.service.BookServiceImpl;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("Service для работы с книгами должен")
 @JdbcTest
-@Import({BookServiceImpl.class, BookDaoJdbc.class})
+//@Import({BookServiceImpl.class, BookDaoJdbc.class})
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class BookServiceTest {
 
@@ -29,6 +28,7 @@ class BookServiceTest {
     private static final int EXISTING_BOOK_AUTORID = 1;
     private static final int EXISTING_BOOK_GENREID = 1;
 
+    /*
     @Autowired
     private BookServiceImpl bookService;
 
@@ -90,5 +90,7 @@ class BookServiceTest {
                         new Book(2, "Onegin",1980,2,1),
                         new Book(3, "Romeo & Juliette",1990,3,2));
     }
+
+     */
 
 }

@@ -8,16 +8,15 @@ import org.springframework.context.annotation.Import;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
-import ru.otus.spring.domain.Book;
+import ru.otus.spring.models.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("Dao для работы с книгами должно")
 @JdbcTest
-@Import(BookDaoJdbc.class)
+//@Import(BookDaoJdbc.class)
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class BookDaoJdbcTest {
 
@@ -28,6 +27,7 @@ class BookDaoJdbcTest {
     private static final int EXISTING_BOOK_AUTORID = 1;
     private static final int EXISTING_BOOK_GENREID = 1;
 
+    /*
     @Autowired
     private BookDaoJdbc bookDao;
 
@@ -89,5 +89,5 @@ class BookDaoJdbcTest {
                         new Book(2, "Onegin",1980,2,1),
                         new Book(3, "Romeo & Juliette",1990,3,2));
     }
-
+*/
 }

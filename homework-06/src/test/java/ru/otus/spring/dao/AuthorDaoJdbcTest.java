@@ -8,16 +8,15 @@ import org.springframework.context.annotation.Import;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
-import ru.otus.spring.domain.Author;
+import ru.otus.spring.models.Author;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("Dao для работы с авторами должно")
 @JdbcTest
-@Import(AuthorDaoJdbc.class)
+//@Import(AuthorDaoJdbc.class)
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class AuthorDaoJdbcTest {
 
@@ -25,7 +24,7 @@ class AuthorDaoJdbcTest {
     private static final int EXISTING_AUTHOR_ID = 1;
     private static final String EXISTING_AUTHOR_NAME = "Dostoevskiy";
 
-
+    /*
     @Autowired
     private AuthorDaoJdbc authorDao;
 
@@ -87,5 +86,7 @@ class AuthorDaoJdbcTest {
                         new Author(2, "Pushkin"),
                         new Author(3, "Sheckspear"));
     }
+
+     */
 
 }
